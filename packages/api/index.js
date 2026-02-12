@@ -21,7 +21,7 @@ const CreateJobSchema = z.object({
     runAt: z.iso.datetime().optional(),
     priority: z.number().int().optional(),
     maxAttempts: z.number().int().min(1).max(100).optional(),
-    dempotencyKey: z.string().min(1).optional(),
+    idempotencyKey: z.string().min(1).optional(),
 })
 
 app.get("/health", async (_req, res) => {
@@ -85,7 +85,7 @@ app.post("/jobs", async (req, res) => {
 });
 
 app.get("/jobs/:id", async (req, res) => {
-    const id = req.params;
+    const {id} = req.params;
     const result = await pool.query(`SELECT * FROM jobs WHERE id = $1`, [id]);
     if (result.rowCount === 0) {
         return res.status(404).json({ error: "not_found" })
