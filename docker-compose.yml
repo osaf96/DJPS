@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: djps_postgres
+
+    environment:
+      POSTGRES_USER: djps
+      POSTGRES_PASSWORD: djps
+      POSTGRES_DB: djps
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - djps_pg_data:/var/lib/postgresql/data
+    
+    restart: unless-stopped
+volumes: 
+  djps_pg_data:
