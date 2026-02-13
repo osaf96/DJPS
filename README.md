@@ -16,6 +16,7 @@ This project explores core distributed systems concepts including:
 
 Current architecture:
 
+![alt text](https://github.com/osaf96/DJPS/blob/main/docs/architecture.png?raw=true)
 ```
 Client
    ↓
